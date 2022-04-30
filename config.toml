@@ -44,9 +44,14 @@ name = "Portfolio"
 weight = 3
 
 [[menu.main]]
+URL = "docs"
+name = "Docs"
+weight = 4
+
+[[menu.main]]
 URL = "contact"
 name = "Contact"
-weight = 4
+weight = 5
 
 
 # default parameters
