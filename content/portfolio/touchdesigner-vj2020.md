@@ -3,10 +3,10 @@ title: "TouchDesigner VJシステム"
 date: 2020-07-16T12:00:00+06:00
 description: "部員のTouchDesignerによるVJシステムの自作"
 images:
-    - img: "/images/portfolio/touchdesigner-vj2020/title.png"
-    - img: "/images/portfolio/touchdesigner-vj2020/img1.png"
-    - img: "/images/portfolio/touchdesigner-vj2020/img2.png"
-    - img: "/images/portfolio/touchdesigner-vj2020/img3.jpg"
+    - img: "images/portfolio/touchdesigner-vj2020/title.png"
+    - img: "images/portfolio/touchdesigner-vj2020/img1.png"
+    - img: "images/portfolio/touchdesigner-vj2020/img2.png"
+    - img: "images/portfolio/touchdesigner-vj2020/img3.jpg"
 ---
 弊サークルの部員がTouchDesignerでVJシステムを自作しました！
 
