@@ -5,8 +5,6 @@ on: [pull_request]
 jobs:
   preview:
     runs-on: self-hosted
-    permissions:
-      repository: write
     env:
       HUGO_VERSION: 0.62.1
       PREVIEW_HOST: dot-cube.github.io.preview.moyashi.dev
