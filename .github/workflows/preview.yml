@@ -13,7 +13,7 @@ jobs:
 
       - name: Check environment
         run: |
-          echo "HUGO_PATH='`which hugo`'" >> $GITHUB_ENV
+          echo "HUGO_PATH=`which hugo`" >> $GITHUB_ENV
 
       - name: Setup Hugo
         if: ${{ env.HUGO_PATH == '' }}
@@ -31,6 +31,6 @@ jobs:
 
       - name: Build and deploy
         run: |
+          echo ${GITHUB_SHA}
           hugo --gc --minify --cleanDestinationDir
           mv public /var/www/html/${GITHUB_SHA}
-          echo ${GITHUB_SHA}
