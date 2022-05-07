@@ -61,4 +61,4 @@ jobs:
             -H "User-Agent: ${GITHUB_REPOSITORY%/*}" \
             ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -d "{\"body\":\"${PREVIEW_URL}\"}" \
-            -w '%{http_code}\n' -i
+            -w '%{http_code}\n' -v
