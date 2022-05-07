@@ -28,10 +28,13 @@ jobs:
           tar -zxvf v${HUGO_VERSION}.tar.gz
           cd hugo-${HUGO_VERSION}
           CGO_ENABLED=1 go install --tags extended
+          CGO_ENABLED=1 go build --tags extended
+          mv hugo /usr/bin/hugo
+          rm -rf `pwd`
 
       - name: Configure
         run: |
-          sed -i -E "s/^baseURL ?=.+$/baseURL = '${GITHUB_SHA}'/g" ./config.toml
+          sed -i -E "s/^baseURL ?=.+$/baseURL = '\/${GITHUB_SHA}'/g" ./config.toml
           sed -i -E "s/^google_analitycs_id ?=.+$/google_analitycs_id = ''/g" ./config.toml
 
       - name: Build and deploy
