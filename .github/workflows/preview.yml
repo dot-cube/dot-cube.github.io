@@ -1,0 +1,27 @@
+name: Preview
+
+on: [pull_request]
+
+jobs:
+  preview:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.62.1"
+          extended: true
+
+      - name: Configure
+        run: |
+          sed -i -E "s/^baseURL ?=.+$/baseURL = '${GITHUB_SHA}'/g" ./config.toml
+          sed -i -E "s/^google_analitycs_id ?=.+$/google_analitycs_id = ''/g" ./config.toml
+
+      - name: Build and deploy
+        run: |
+          hugo --gc --minify --cleanDestinationDir
+          mv public /var/www/html/${GITHUB_SHA}
+          echo ${GITHUB_SHA}
