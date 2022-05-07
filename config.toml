@@ -71,7 +71,8 @@ description = "\"dot cube\"は宮崎大学のデジタルコンテンツ制作�
 # google analitycs
 google_analitycs_id = "UA-163090822-1" # Your ID
 # copyright
-copyright = "Copyrighht &copy; 2020 [dot cube](https://dot-cube.github.io)"
+copyright_holder = "[dot cube](https://dot-cube.github.io)"
+copyright_start_year = 2017
 # footer logo
 footer_log = "images/logo-symbol.png"
 
