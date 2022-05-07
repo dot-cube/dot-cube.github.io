@@ -25,6 +25,7 @@ jobs:
           
           cd `mktemp -d`
           wget https://github.com/gohugoio/hugo/archive/refs/tags/v${HUGO_VERSION}.tar.gz
+          tar -zxvf v${HUGO_VERSION}.tar.gz
           cd hugo-${HUGO_VERSION}
           CGO_ENABLED=1 go install --tags extended
 
