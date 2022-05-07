@@ -5,15 +5,24 @@ on: [pull_request]
 jobs:
   preview:
     runs-on: self-hosted
+    env:
+      HUGO_VERSION: 0.62.1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Check environment
+        run: |
+          echo "HUGO_PATH='`which hugo`'" >> $GITHUB_ENV
+
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: "0.62.1"
-          extended: true
+        if: ${{ env.HUGO_PATH == '' }}
+        run: |
+          wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb
+          wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
+          apt-get -y install ./hugo_${HUGO_VERSION}_Linux-64bit.deb && \
+          apt-get -y install ./hugo_extended_${HUGO_VERSION}_Linux-64bit.deb && \
+          rm hugo_${HUGO_VERSION}_Linux-64bit.deb hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
 
       - name: Configure
         run: |
