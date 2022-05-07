@@ -60,4 +60,4 @@ jobs:
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -d "{\"body\":\"${PREVIEW_URL}\"}" \
-            -w '%{http_code}\n'
+            -w '%{http_code}\n' -i
