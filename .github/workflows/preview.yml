@@ -46,10 +46,17 @@ jobs:
           BASE_DIR="/var/www/html/${ISSUE_NUMBER}"
           mkdir -p  ${BASE_DIR}
           mv public ${BASE_DIR}/${GITHUB_SHA}
-          PREVIEW_URL="https://${PREVIEW_HOST}/${BASE_DIR}/${GITHUB_SHA}"
+          PREVIEW_URL="https://${PREVIEW_HOST}/${ISSUE_NUMBER}/${GITHUB_SHA}"
 
           echo ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments
           echo ${PREVIEW_URL}
+
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+            -d '{"body":"Me too"}'
 
           curl \
             -X POST \
