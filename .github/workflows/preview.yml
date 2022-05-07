@@ -7,6 +7,7 @@ jobs:
     runs-on: self-hosted
     env:
       HUGO_VERSION: 0.62.1
+      PREVIEW_HOST: dot-cube.github.io.preview.moyashi.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -15,6 +16,8 @@ jobs:
 
       - name: Check environment
         run: |
+          ISSUE_NUMBER=$(jq --raw-output .pull_request.number "${GITHUB_EVENT_PATH}")
+          echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> $GITHUB_ENV
           echo "HUGO_PATH=`which hugo`" >> $GITHUB_ENV
 
       - name: Setup Hugo
@@ -22,7 +25,6 @@ jobs:
         run: |
           apt-get update
           apt-get -y install golang
-          
           cd `mktemp -d`
           wget https://github.com/gohugoio/hugo/archive/refs/tags/v${HUGO_VERSION}.tar.gz
           tar -zxvf v${HUGO_VERSION}.tar.gz
@@ -34,11 +36,21 @@ jobs:
 
       - name: Configure
         run: |
-          sed -i -E "s/^baseURL ?=.+$/baseURL = '\/${GITHUB_SHA}'/g" ./config.toml
+          sed -i -E "s/^baseURL ?=.+$/baseURL = '\/${ISSUE_NUMBER}\/${GITHUB_SHA}'/g" ./config.toml
           sed -i -E "s/^google_analitycs_id ?=.+$/google_analitycs_id = ''/g" ./config.toml
 
       - name: Build and deploy
         run: |
           echo ${GITHUB_SHA}
           hugo --gc --minify --cleanDestinationDir
-          mv public /var/www/html/${GITHUB_SHA}
+          BASE_DIR="/var/www/html/${ISSUE_NUMBER}"
+          mkdir -p  ${BASE_DIR}
+          mv public ${BASE_DIR}/${GITHUB_SHA}
+          PREVIEW_URL="https://${PREVIEW_HOST}/${BASE_DIR}/${GITHUB_SHA}"
+
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+            -d "{\"body\":### Preview page\n ${PREVIEW_URL}\"\"}" | jq -r '.id'
