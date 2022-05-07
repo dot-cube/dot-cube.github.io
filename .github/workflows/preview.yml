@@ -6,8 +6,8 @@ jobs:
   preview:
     runs-on: self-hosted
     permissions:
-      issues: write 
-      pull_request: write
+      - issues: write 
+      - pull_request: write
     env:
       HUGO_VERSION: 0.62.1
       PREVIEW_HOST: dot-cube.github.io.preview.moyashi.dev
