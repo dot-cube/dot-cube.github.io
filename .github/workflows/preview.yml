@@ -55,7 +55,7 @@ jobs:
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-            -H "User-Agent: ${GITHUB_ACTOR}" \
+            -H "User-Agent: dot-cube" \
             ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -d "{\"body\":\"${PREVIEW_URL}\"}" \
             -w '%{http_code}\n' -v --fail
