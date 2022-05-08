@@ -44,7 +44,8 @@ jobs:
           echo ${GITHUB_SHA}
           hugo --gc --minify --cleanDestinationDir
           BASE_DIR="/var/www/html/${ISSUE_NUMBER}"
-          mkdir -p  ${BASE_DIR}
+          mkdir -p ${BASE_DIR}
+          rm -rf ${BASE_DIR}/${GITHUB_SHA}  # NOTE: Re-run jobs 実行時のエラーを回避
           mv public ${BASE_DIR}/${GITHUB_SHA}
           PREVIEW_URL="https://${PREVIEW_HOST}/${ISSUE_NUMBER}/${GITHUB_SHA}"
 
