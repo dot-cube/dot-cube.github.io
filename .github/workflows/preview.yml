@@ -51,6 +51,7 @@ jobs:
           echo ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments
           echo ${PREVIEW_URL}
 
+          ISSUE_NUMBER=14
           curl \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
