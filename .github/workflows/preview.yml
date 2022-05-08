@@ -59,3 +59,12 @@ jobs:
             ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -d "{\"body\":\"${PREVIEW_URL}\"}" \
             -w '%{http_code}\n' -v
+
+          curl --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${ISSUE_NUMBER}/comments \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'content-type: application/json' \
+            --data '{
+              "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+              }' \
+            --fail
