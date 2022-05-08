@@ -59,7 +59,9 @@
       著作権の最終年?部分は、最新のコンテンツを公開・更新した年のものがビルド時に設定される。
       コンテンツを公開・更新した年の取得方法は、`content`ディレクトリ中にあるマークダウンファイルのメタデータ記述部分から取得している(はず...)
     -->
-    <p class="mb-0 text-light">Copyrighht &copy; {{ .Site.Params.copyright_start_year }}-{{ .Lastmod.Format "2006" }} {{ .Site.Params.copyright_holder | markdownify }}</p>
+    <p class="mb-0 text-light">
+      Copyright &copy; {{ .Site.Params.copyright_start_year }}-{{ now.Format "2006" }} {{ .Site.Params.copyright_holder | markdownify }}
+    </p>
   </div>
 </footer>
 <!-- /footer -->
