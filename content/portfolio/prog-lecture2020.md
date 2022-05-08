@@ -3,10 +3,10 @@ title: "2020年度プログラミング体験講座"
 date: 2020-05-12T12:14:34+06:00
 description: "dot cubeでは毎年新入生向けに『プログラミング体験講座』を実施しています。「プログラミング、気になるけど難しそうだな...」そんな新入生にお絵かきソフトの作成を通してプログラミングの楽しさを知ってもらおうという取り組みです！"
 images:
-    - img: "/images/portfolio/prog-lecture2020/title.jpg"
-    - img: "/images/portfolio/prog-lecture2020/img1.png"
-    - img: "/images/portfolio/prog-lecture2020/img2.png"
-    - img: "/images/portfolio/prog-lecture2020/img3.png"
+    - img: "images/portfolio/prog-lecture2020/title.jpg"
+    - img: "images/portfolio/prog-lecture2020/img1.png"
+    - img: "images/portfolio/prog-lecture2020/img2.png"
+    - img: "images/portfolio/prog-lecture2020/img3.png"
 ---
 
 #### プログラミング体験講座とは？

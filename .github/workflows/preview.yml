@@ -1,0 +1,62 @@
+name: Preview
+
+on: [pull_request]
+
+jobs:
+  preview:
+    runs-on: self-hosted
+    env:
+      HUGO_VERSION: 0.62.1
+      PREVIEW_HOST: dot-cube.github.io.preview.moyashi.dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Check environment
+        run: |
+          ISSUE_NUMBER=$(jq --raw-output .pull_request.number "${GITHUB_EVENT_PATH}")
+          echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> $GITHUB_ENV
+          echo "HUGO_PATH=`which hugo`" >> $GITHUB_ENV
+
+      - name: Setup Hugo
+        if: ${{ env.HUGO_PATH == '' }}
+        run: |
+          apt-get update
+          apt-get -y install golang
+          cd `mktemp -d`
+          wget https://github.com/gohugoio/hugo/archive/refs/tags/v${HUGO_VERSION}.tar.gz
+          tar -zxvf v${HUGO_VERSION}.tar.gz
+          cd hugo-${HUGO_VERSION}
+          CGO_ENABLED=1 go install --tags extended
+          CGO_ENABLED=1 go build --tags extended  # HACK: ビルド時にこのオプションが必要か不明
+          mv hugo /usr/bin/hugo
+          rm -rf `pwd`
+
+      - name: Configure
+        run: |
+          sed -i -E "s/^baseURL ?=.+$/baseURL = '\/${ISSUE_NUMBER}\/${GITHUB_SHA}'/g" ./config.toml
+          sed -i -E "s/^google_analitycs_id ?=.+$/google_analitycs_id = ''/g" ./config.toml
+
+      - name: Build and deploy
+        run: |
+          hugo --gc --minify --cleanDestinationDir
+          BASE_DIR="/var/www/html/${ISSUE_NUMBER}"
+          mkdir -p ${BASE_DIR}
+          rm -rf ${BASE_DIR}/${GITHUB_SHA}  # NOTE: Re-run jobs 実行時のエラーを回避
+          mv public ${BASE_DIR}/${GITHUB_SHA}  # NOTE: ビルドディレクトリを公開用ディレクトリに移動する
+          PREVIEW_URL="https://${PREVIEW_HOST}/${ISSUE_NUMBER}/${GITHUB_SHA}"
+          echo ${PREVIEW_URL}  # DEBUG
+          echo "MSG='### Preview link\n${PREVIEW_URL}'" >> ${GITHUB_ENV}
+
+      - name: Post comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ${{ env.MSG }}
+            })

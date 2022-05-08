@@ -3,10 +3,10 @@ title: "魚魂（UOCON）"
 date: 2021-05-01T00:00:00+06:00
 description: "門川町・宮崎大学連携事業 さかなゲーム「魚魂（UOCON）」の制作"
 images:
-    - img: "/images/portfolio/uocon2021/title.png"
-    - img: "/images/portfolio/uocon2021/img1.png"
-    - img: "/images/portfolio/uocon2021/img2.png"
-    - img: "/images/portfolio/uocon2021/img3.jpg"
+    - img: "images/portfolio/uocon2021/title.png"
+    - img: "images/portfolio/uocon2021/img1.png"
+    - img: "images/portfolio/uocon2021/img2.png"
+    - img: "images/portfolio/uocon2021/img3.jpg"
 ---
 #### おさかなゲーム「魚魂（UOCON）」
 dot cube で 「令和2年度門川町・宮崎大学連携事業」の一環として、さかなのゲーム「魚魂（UOCON）」を制作しました。

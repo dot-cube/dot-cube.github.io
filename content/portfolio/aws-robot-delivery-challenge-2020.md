@@ -3,11 +3,11 @@ title: "AWS Robot Delivery Challenge 2020"
 date: 2019-05-12T12:14:34+06:00
 description: "AWS Robot Delivery Challenge 本戦及び、決勝戦へ出場しました。"
 images:
-    - img: "/images/portfolio/aws-robot-delivery-challenge-2020/10-web-ui.jpeg"
-    - img: "/images/portfolio/aws-robot-delivery-challenge-2020/11-coding.JPG"
-    - img: "/images/portfolio/aws-robot-delivery-challenge-2020/01-final-game-result.jpeg"
-    - img: "/images/portfolio/aws-robot-delivery-challenge-2020/02-main-game-result.jpeg"
-    - img: "/images/portfolio/aws-robot-delivery-challenge-2020/03-pre-game-result.jpeg"
+    - img: "images/portfolio/aws-robot-delivery-challenge-2020/10-web-ui.jpeg"
+    - img: "images/portfolio/aws-robot-delivery-challenge-2020/11-coding.JPG"
+    - img: "images/portfolio/aws-robot-delivery-challenge-2020/01-final-game-result.jpeg"
+    - img: "images/portfolio/aws-robot-delivery-challenge-2020/02-main-game-result.jpeg"
+    - img: "images/portfolio/aws-robot-delivery-challenge-2020/03-pre-game-result.jpeg"
 ---
 
 アマゾン ウェブ サービス ジャパン株式会社が主催するロボットコンテスト「AWS Robot Dlivery Challenge」の本戦・決勝戦へ、弊サークルのメンバー３人が出場しました。

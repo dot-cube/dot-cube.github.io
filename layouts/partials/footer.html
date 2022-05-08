@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-6 mb-5">
-          <img class="symbol-logo-footer rounded" src="/images/logo-symbol.png" alt="symbol logo">
+          <img class="symbol-logo-footer rounded" src="{{ .Site.Params.footer_log | absURL }}" alt="symbol logo">
         </div>
         <div class="col-12 col-md-3 mb-5">
           <div class="row">
@@ -55,7 +55,13 @@
     </div>
   </div>
   <div class="border-top text-center border-dark py-5">
-    <p class="mb-0 text-light">{{ .Site.Params.copyright | markdownify }}</p>
+    <!--
+      著作権の最終年?部分は、最新のコンテンツを公開・更新した年のものがビルド時に設定される。
+      コンテンツを公開・更新した年の取得方法は、`content`ディレクトリ中にあるマークダウンファイルのメタデータ記述部分から取得している(はず...)
+    -->
+    <p class="mb-0 text-light">
+      Copyright &copy; {{ .Site.Params.copyright_start_year }}-{{ now.Format "2006" }} {{ .Site.Params.copyright_holder | markdownify }}
+    </p>
   </div>
 </footer>
 <!-- /footer -->
