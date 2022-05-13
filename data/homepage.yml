@@ -17,7 +17,10 @@ about:
     </p>
     <p class=" lead text-dark">
     ちょっとでも気になった方はぜひ遊びに来てみてください！
-    </P>
+    </p>
+    <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hAk9vYxdj94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
   button:
     enable: true
     label: "もっと詳しく"
